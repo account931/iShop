@@ -90,8 +90,8 @@
 	  
 	  <!--Mine BASKET -->
 	<a href="#aboutZ" style="float: right;>
-	  <span class="">Cart </span>
-      <span id="cartPrice"> &nbsp;0 UAH</span>
+	  <span class="">Cart: </span>
+      <span id="cartPrice"> &nbsp;0 UAH</span> 
     </a>
 	<!-- End mine Basket-->
 	
@@ -165,6 +165,7 @@ function closeNav() {
     </div>
 	
     <div class="modal-body">
+	  <!--<div class="container ff"> -->  <!-- for bootstrap-->
 	  
 	  <div class="row row1"> <!--Bstrap inj-->
 	  
@@ -176,13 +177,13 @@ function closeNav() {
 	    </div>
 		
         <div class="col-sm-2">
-	      <p>Price <span id="productPrice"></span> <p>
+	      <p>Price <span id="productPrice"></span> </p>
 	    </div>
 		
 		<div class="col-sm-2">
 	      <p>Pcs &nbsp; <span id="productPcs">0</span> <p>
-		  <button id="plus"> + </button>
-		  <button id="minus"> - </button>
+		  <button type="button" class="btn btn-success" id="plus"> + </button>
+		  <button class="btn btn-danger" id="minus"> - </button>
 	    </div>
 		
 		<div class="col-sm-2">
@@ -193,9 +194,13 @@ function closeNav() {
 	  
 	  <div class="row row2">
 	    <div class="col-sm-10"></div>
-		<div class="col-sm-2"><button id="addToCart"> Add to cart </button></div>
+		<div class="col-sm-2">
+		  <!--<button class="btn" id="cancelThis"> Cancel</button>-->
+		  <button class="btn btn-info" id="addToCart"> Add to cart </button>
+		</div>
 	  </div> <!--class="row2">-->
 	  
+	 <!--</div>--> <!--<div class="container ff" --for bootstrap--> 
     </div>
     <div class="modal-footer">
       <h3>Modal Footer</h3>
@@ -217,7 +222,7 @@ function closeNav() {
 <!--<div class="container">-->
 
   </br>
-  <div class="list-group">
+  <div class="list-group"> <!-- should be replaced by SQL-->
     <a href="#" class="list-group-item list-group-item-success  myBtn" id="Dnb-12.55">First item : Drum n bass</a>
     <a href="#" class="list-group-item list-group-item-info     myBtn" id="Dub-7.2">Second item : Dub</a>
     <a href="#" class="list-group-item list-group-item-warning  myBtn" id="Techno-1.4">Third item : Techno</a>

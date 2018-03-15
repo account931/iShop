@@ -1,4 +1,6 @@
 
+//Local STORAGE RETRIVING SHOULD BE !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 // Initialize OBJECT productsObject, was in myCore, but thus was executed there with delay and Line 46 here was failing
 //checking if object for all product exist and creat it if not
 	if (typeof productsObject == "undefined") {

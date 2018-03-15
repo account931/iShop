@@ -27,7 +27,7 @@ $(document).ready(function(){
 	
 	// Click Add to cart************
 	$("#addToCart").click(function(){
-        addToCart(); // add selected product to cart
+        addToCart(); // add selected product to cart - add product values to OBJECT {productsObject}
 		refreshCartIcon(); // recalculate the Cart Icon -  Calculates the Object sum and refresh the Cart Icon
     });
 	//------------------------------
@@ -92,6 +92,18 @@ $(document).ready(function(){
 		// if the selected amount in NULL, do nothing
 		if (pcs == 0) {
 			return;
+			
+		} else if (pcs == 1) { // if user has 1 pcs and wants to null it
+			
+			if (confirm ("Are you sure to null this order?")) {
+				
+			    --pcs; //increase pieces + 1
+		        $("#productPcs").html(pcs);	
+			    $("#productTotal").html(0);
+			    delete productsObject[prodName]; // delete this product from object
+				refreshCartIcon();
+			}
+			
 		} else {
 			--pcs; //increase pieces + 1
 		    $("#productPcs").html(pcs);
@@ -121,6 +133,10 @@ $(document).ready(function(){
 	
 	
 	
+	
+	//Local STORAGE ADDING SHOULD BE HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+	// add selected product to cart - add product values to OBJECT {productsObject}
 	// **************************************************************************************
     // **************************************************************************************
     //                                                                                     ** 
@@ -162,8 +178,13 @@ $(document).ready(function(){
 			 sum = sum + sumX;
 		}
 		
-		sumXX = substringSum (sum);
-		$("#cartPrice").html(sumXX + " UAH");
+		sumXX = substringSum (sum); //cut odd digits (12.999999)
+		
+		if(sumXX == undefined) {  // if user -- pieces till 0 and it was the only product, so OBJECT is empty, can actually check if OBJECT empty before running for() loop 
+		    $("#cartPrice").html("0 UAH");
+		} else {
+		    $("#cartPrice").html(sumXX + " UAH");
+		}
 		
 	}
 	
