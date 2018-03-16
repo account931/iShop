@@ -1,17 +1,11 @@
 
-//Local STORAGE RETRIVING SHOULD BE !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-// Initialize OBJECT productsObject, was in myCore, but thus was executed there with delay and Line 46 here was failing
-//checking if object for all product exist and creat it if not
-	if (typeof productsObject == "undefined") {
-        alert("Object will be created now");
-		var productsObject = { }; //empty object for all cart products
-    } else {
-		alert("Object Exists");
-	}
-		
 
 
+
+
+	
+	
+	// This script is for displaying a modal window with a single product, whn u click it in lists on main page
 
 // Was not workinf unless use defer -> <script src="js/modalBox.js" defer>
 // Get the modal
@@ -26,7 +20,7 @@ var span = document.getElementsByClassName("close")[0];
 
 
 
-
+// Below handles clicking on product item in List View. Uses pure JS!!.
 // When the user clicks the button, open the modal 
 //it fistly uses id
 /*btn.onclick = function() {
@@ -54,7 +48,7 @@ for (var i=0; i < btn.length; i++) {
 		}
     }
 };
-
+// End Below handles clicking on product item in List View. Uses pure JS!!.
 
 
 

@@ -1,3 +1,38 @@
+// This script is responsible for:
+// 1. Creating a new object with products or retrieving it from Local Storage ( If it was prev saved)
+// 2.Each product plus, minus, re-calculate the Header cart icon sum
+
+
+
+
+// FALSE - Initialize OBJECT productsObject, was in myCore, but thus was executed there with delay and Line 46 here was failing
+//checking if object for all product exist and creat it if not
+window.productsObject;
+// Check if Object was already saved in Local Storage, if not - creat it
+    if (localStorage.getItem("localStorageObject") != null) { // If Local Storage was prev created and exists
+		    var retrievedObject = localStorage.getItem('localStorageObject'); // get Loc Storage item
+			var retrievedObject = JSON.parse(retrievedObject);
+			productsObject = retrievedObject;
+			refreshCartIcon (); // recalc the header cart icon, had to outline it out of ready section, as it was invisible
+			alert ("Loc St exists" + JSON.stringify(productsObject, null, 4) );
+    } else {
+        
+		// if Loc Storage does not exist (i.e Object was never initialized), create a new Object
+	    if (typeof productsObject == "undefined") {
+            alert("Object will be created now");
+		    var productsObject = { }; //empty object for all cart products
+        } else {
+		    alert("Object Exists"); // will never fire
+	    }
+	}	
+
+
+
+
+
+
+
+
 
 $(document).ready(function(){
 	
@@ -41,11 +76,32 @@ $(document).ready(function(){
 	//------------------------------
 	
 	
+	
+	// Click to see the object************
+	$("#openSidePagewithCart").click(function(){
+       openCalcSidePagewithCart();
+    });
+	//------------------------------
+	
+	
+	
+	
+	
+	// Click ++plus in Full Final Cart List from Left Panel************
+	$(document).on("click", '.fullCartPlus', function() {   // for newly generated
+       plusItemInSideFinalCart(this.id);
+    });
+	//------------------------------
+	
+	
+	
+	
 	// **************************************************************************************
     // **************************************************************************************
     //                                                                                     ** 
 
-	function actionPlus () {
+	function actionPlus () 
+	{
 		//var parentID = $(this).parent().parent().attr('id');
 	    //var parentID = $(this).closest('.prName').attr('id');
 		
@@ -84,7 +140,8 @@ $(document).ready(function(){
     // **************************************************************************************
     //                                                                                     ** 
 	
-	function actionMinus () {
+	function actionMinus () 
+	{
 		var prodName = info[0]; // get it from modalBox.js
 		var prodPrice = info[1]; // get price from modalBox.js
 		var pcs = $("#productPcs").html(); // get the amount of pieces
@@ -101,6 +158,10 @@ $(document).ready(function(){
 		        $("#productPcs").html(pcs);	
 			    $("#productTotal").html(0);
 			    delete productsObject[prodName]; // delete this product from object
+				
+				// Save OBJECT to LocalStorage (use it for -last item only, others variant will use addToCart ();)
+			    localStorage.setItem('localStorageObject', JSON.stringify(productsObject)); // Parse Object to string and save to LStorage
+				$('#myModal').fadeOut(1900);
 				refreshCartIcon();
 			}
 			
@@ -141,7 +202,8 @@ $(document).ready(function(){
     // **************************************************************************************
     //                                                                                     ** 
 	
-	function addToCart () {
+	function addToCart () 
+	{
 		var prodName = info[0]; // get product name from modalBox.js
 		var prodPrice = info[1]; // get price from modalBox.js
 		var pcs = $("#productPcs").html(); // get the amount of pieces
@@ -154,7 +216,13 @@ $(document).ready(function(){
 			productsObject[prodName] = {};
 			productsObject[prodName]['price'] = prodPrice;
 			productsObject[prodName]['quantity'] = pcs;
-			alert(JSON.stringify(productsObject, null, 4));
+			alert(JSON.stringify(productsObject, null, 4)); //to alert OBJECT
+			
+			// Save OBJECT to LocalStorage
+			localStorage.setItem('localStorageObject', JSON.stringify(productsObject)); // Parse Object to string and save to LStorage
+			//var retrievedObject = localStorage.getItem('localStorageObject'); // get Loc Storage item
+			//var retrievedObject = JSON.parse(retrievedObject); // turn LC string item to object type again
+			//alert("Loc ST " + JSON.stringify(retrievedObject, null, 4));
 		}
 		
 	}
@@ -163,15 +231,18 @@ $(document).ready(function(){
     // **************************************************************************************
 	
 	
+	});
+	// END ready
 	
 	
 	
-	// Calculates the Object sum and refresh the Cart Icon
+	// Calculates the Object sum and refresh the Cart Icon. 
 	// **************************************************************************************
     // **************************************************************************************
     //                                                                                     ** 
 	
-	function refreshCartIcon () {
+	function refreshCartIcon () 
+	{
 		var sum = 0;
 		for (var key in productsObject) {
 			 var sumX = productsObject[key]['price'] * productsObject[key]['quantity'];
@@ -181,9 +252,12 @@ $(document).ready(function(){
 		sumXX = substringSum (sum); //cut odd digits (12.999999)
 		
 		if(sumXX == undefined) {  // if user -- pieces till 0 and it was the only product, so OBJECT is empty, can actually check if OBJECT empty before running for() loop 
-		    $("#cartPrice").html("0 UAH");
+		    $("#cartPrice").html("0 UAH");         // updating price in header cart icon
+			$("#totalSumCartFull").html("0 UAH"); // updating price in left full page cart list
 		} else {
-		    $("#cartPrice").html(sumXX + " UAH");
+		    $("#cartPrice").html(sumXX + " UAH");       // updating price in header cart icon
+			$("#totalSumCartFull").html(sumXX + " UAH");// updating price in left full page cart list
+			
 		}
 		
 	}
@@ -200,7 +274,8 @@ $(document).ready(function(){
     // **************************************************************************************
     //                                                                                     ** 
 	
-	function substringSum (mySum) {
+	function substringSum (mySum) 
+	{
 		mySum = mySum.toString(); // otherwise indexOf works with strings only
 		if ( mySum.indexOf(".") != -1 ) {
 			//alert ('subst');
@@ -217,4 +292,64 @@ $(document).ready(function(){
 	
 	
 	
-});
+     
+	// opens side page with full Cart list and calculates all from the data in OBJECT, generates auto id for +- (i.e id="product_plus")
+	// **************************************************************************************
+    // **************************************************************************************
+    //                                                                                     ** 
+	
+	function openCalcSidePagewithCart() 
+	{
+	    //alert(JSON.stringify(productsObject, null, 4)); //to alert OBJECT
+        var finalText = "<div class='container'>";
+		for (var key in productsObject) {
+			
+			var addID = key; // alert (addID);
+			finalText = finalText + 
+			            "<div class='row'>" +
+						"<div class='col-sm-6 col-xs-2'>" + key + "</div> " +
+						"<div class='col-sm-2 col-xs-2'>" + productsObject[key]['quantity'] + "</div> " +
+						"<div class='col-sm-1 col-xs-1'><button type='button' class='btn btn-success fullCartPlus' id=' "  + addID + "_plus'> + </button></div>" +
+						"<div class='col-sm-1 col-xs-1'><button class='btn btn-danger'                id=' "  + addID + "_minus'> - </button>" + "</div>" +
+						"<div class='col-sm-2 col-xs-2'>" + productsObject[key]['price'] + "</div> " +
+						"<div class='col-sm-2 col-xs-2'>" + substringSum (productsObject[key]['quantity'] * productsObject[key]['price']) +
+						"</div>" +
+						"</div>";
+		}
+		finalText = finalText + "</div>";
+		$("#fullCartList").html(finalText);
+	}
+	
+	// **                                                                                  **
+    // **************************************************************************************
+    // **************************************************************************************
+	
+	
+	
+	
+	
+	// Click ++ plus in Final Full Cart from Left
+	// **************************************************************************************
+    // **************************************************************************************
+    //                                                                                     ** 
+	
+	function plusItemInSideFinalCart (id)
+	{
+	    //var idm= $("#" +id).val();
+		idArray = id.split("_"); 
+		var productZ = idArray[0]; // get 1st element = product name (from id="product_plus")
+		
+		//alert (productZ.trim().length);
+	    productZ = productZ.trim(); // trim product as it get 1 blankspace and cause the creash in nenxt line
+		var pcs = productsObject[productZ]['quantity']; // get quantity from Object
+		++pcs;
+		productsObject[productZ]['quantity'] = pcs; // assing new quantity
+		localStorage.setItem('localStorageObject', JSON.stringify(productsObject)); // Parse Object to string and save to LStorage
+		openCalcSidePagewithCart(); // refresh Left Panel Full Cart
+		refreshCartIcon (); // refersh total amount in header cart + total amount in left Full Cart List
+	}
+	
+	// **                                                                                  **
+    // **************************************************************************************
+    // **************************************************************************************
+	

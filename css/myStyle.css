@@ -2,3 +2,8 @@
 #productName, #productPrice {
    color:red;
  }
+ 
+ /* text color in left full page with full cart list */
+ #fullCartList, #totalSumCartFull, .sidenav p {
+	 color:white;
+ }

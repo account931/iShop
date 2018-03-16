@@ -8,8 +8,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
-  <script src="js/modalBox.js" defer></script> <!-- Modal Box-->
+  
   <script src="js/myCore.js" defer></script> <!-- plus, minus logic-->
+  <script src="js/modalBox.js" defer></script> <!-- Modal Box-->
   
   <link rel="stylesheet" href="css/sideNavFullScreenMenu.css"> <!--side nav full screen-->
   <link rel="stylesheet" href="css/modalBox.css"> <!--modal window-->
@@ -73,7 +74,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
   
-    <!-- Responsive-->
+    <!-- Responsive Header menu-->
 	<div class="topnav" id="myTopnav">
       <a href="#home" class="active">Home</a>
       <a href="#news">News</a>
@@ -109,7 +110,7 @@
         }
     }
     </script>
-	<!--End Responsive-->
+	<!--End Responsive header menu-->
 	
 	
   </div>
@@ -117,6 +118,7 @@
 
 
 <div class="container">
+
 <!--  Start mine FULL Screen Menu -->
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -124,12 +126,14 @@
   <a href="#">Services</a>
   <a href="#">Clients</a>
   <a href="#">Contact</a>
+  </br><p id="fullCartList">V</p>
+  </br><p> Total: <span id="totalSumCartFull"> 0 UAH</span></p>
 </div>
 
 </br></br></br>
 <!--<h2>Animated Sidenav Example Full Width</h2>-->
 <!--<p>Click on the element below to open the navigation menu.</p>-->
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+<span style="font-size:30px;cursor:pointer" id="openSidePagewithCart" onclick="openNav()">&#9776; open</span>
 
 <script>
 function openNav() {
