@@ -94,6 +94,14 @@ $(document).ready(function(){
 	//------------------------------
 	
 	
+	// Click -- ninus in Full Final Cart List from Left Panel************
+	$(document).on("click", '.fullCartMinus', function() {   // for newly generated
+       minusItemInSideFinalCart(this.id);
+    });
+	//------------------------------
+	
+	
+	
 	
 	
 	// **************************************************************************************
@@ -224,6 +232,7 @@ $(document).ready(function(){
 			//var retrievedObject = JSON.parse(retrievedObject); // turn LC string item to object type again
 			//alert("Loc ST " + JSON.stringify(retrievedObject, null, 4));
 		}
+		$('#myModalConfirm').fadeIn(1200);
 		
 	}
 	// **                                                                                  **
@@ -257,7 +266,10 @@ $(document).ready(function(){
 		} else {
 		    $("#cartPrice").html(sumXX + " UAH");       // updating price in header cart icon
 			$("#totalSumCartFull").html(sumXX + " UAH");// updating price in left full page cart list
-			
+			//alert("Screen width "+screen.width);
+			if (screen.width < 600) {  // if screen is mobile html the price to Home menu
+			   $("#home").html(sumXX + " UAH");
+			}
 		}
 		
 	}
@@ -277,13 +289,18 @@ $(document).ready(function(){
 	function substringSum (mySum) 
 	{
 		mySum = mySum.toString(); // otherwise indexOf works with strings only
-		if ( mySum.indexOf(".") != -1 ) {
+		if ( mySum.indexOf(".") != -1 ) {  // if float, i.e 13.344444
 			//alert ('subst');
-			totalArr = mySum.split(".");
+			mySum = Math.round( parseFloat (mySum) * 100) / 100; //alert (totalArr[1]); // round 13.344444
+			totalArr = mySum.toString().split(".");  // devide  13.344444 to totalArr = [13, 344444];
+			
 			totalArr[1] = totalArr[1].substring(0,2); // cut the amount after the dot to 2 symbols only
 			mySum = totalArr[0] + "." + totalArr[1];
 			return mySum;
+		} else {
+			return mySum;
 		}
+			
 	}
 
     // **                                                                                  **
@@ -293,7 +310,9 @@ $(document).ready(function(){
 	
 	
      
+	
 	// opens side page with full Cart list and calculates all from the data in OBJECT, generates auto id for +- (i.e id="product_plus")
+	// opening by itself is in index.html
 	// **************************************************************************************
     // **************************************************************************************
     //                                                                                     ** 
@@ -307,14 +326,14 @@ $(document).ready(function(){
 			var addID = key; // alert (addID);
 			finalText = finalText + 
 			            "<div class='row'>" +
-						"<div class='col-sm-6 col-xs-2'>" + key + "</div> " +
+						"<div class='col-sm-4 col-xs-2'>" + key + "</div> " +
 						"<div class='col-sm-2 col-xs-2'>" + productsObject[key]['quantity'] + "</div> " +
-						"<div class='col-sm-1 col-xs-1'><button type='button' class='btn btn-success fullCartPlus' id=' "  + addID + "_plus'> + </button></div>" +
-						"<div class='col-sm-1 col-xs-1'><button class='btn btn-danger'                id=' "  + addID + "_minus'> - </button>" + "</div>" +
+						"<div class='col-sm-1 col-xs-2'><button type='button' class='btn btn-success fullCartPlus' id=' "  + addID + "_plus'> + </button></div>" +
+						"<div class='col-sm-1 col-xs-2'><button class='btn btn-danger fullCartMinus'               id=' "  + addID + "_minus'> - </button>" + "</div>" +
 						"<div class='col-sm-2 col-xs-2'>" + productsObject[key]['price'] + "</div> " +
 						"<div class='col-sm-2 col-xs-2'>" + substringSum (productsObject[key]['quantity'] * productsObject[key]['price']) +
 						"</div>" +
-						"</div>";
+						"</div></br>";
 		}
 		finalText = finalText + "</div>";
 		$("#fullCartList").html(finalText);
@@ -352,4 +371,52 @@ $(document).ready(function(){
 	// **                                                                                  **
     // **************************************************************************************
     // **************************************************************************************
+	
+	
+	
+	
+	// Click -- minus in Final Full Cart from Left
+	// **************************************************************************************
+    // **************************************************************************************
+    //                                                                                     ** 
+	
+	function minusItemInSideFinalCart (id)
+	{
+	    //var idm= $("#" +id).val();
+		idArray = id.split("_"); 
+		var productZ = idArray[0]; // get 1st element = product name (from id="product_plus")
+		
+		//alert (productZ.trim().length);
+	    productZ = productZ.trim(); // trim product as it get 1 blankspace and cause the creash in nenxt line
+		var pcs = productsObject[productZ]['quantity']; // get quantity from Object
+		
+		if (pcs != 1) {
+		    --pcs;
+		    productsObject[productZ]['quantity'] = pcs; // assing new quantity
+		    localStorage.setItem('localStorageObject', JSON.stringify(productsObject)); // Parse Object to string and save to LStorage
+		    openCalcSidePagewithCart(); // refresh Left Panel Full Cart
+		    refreshCartIcon (); // refersh total amount in header cart + total amount in left Full Cart List
+			
+		} else if (pcs == 1) { // if user has 1 pcs and wants to null it
+			
+			if (confirm ("Are you sure to null this order?")) {
+				
+			    --pcs; //increase pieces + 1
+		        $("#productPcs").html(pcs);	
+			    //$("#productTotal").html(0);
+			    delete productsObject[productZ]; // delete this product from object
+				
+				// Save OBJECT to LocalStorage (use it for -last item only, others variant will use addToCart ();)
+			    localStorage.setItem('localStorageObject', JSON.stringify(productsObject)); // Parse Object to string and save to LStorage
+				openCalcSidePagewithCart(); // refresh Left Panel Full Cart
+				//$('#myModal').fadeOut(1900);
+				refreshCartIcon();
+			}
+		}	
+	}
+	
+	// **                                                                                  **
+    // **************************************************************************************
+    // **************************************************************************************
+	
 	
