@@ -1,0 +1,12 @@
+/* product name in small single modal box */
+#productName, #productPrice {
+   color:red;
+   font-size:1.2em;
+ }
+ 
+ /* text color in left full page with full cart list */
+ #fullCartList, #totalSumCartFull, .sidenav p {
+	 color:white;
+ }
+ 
+ 

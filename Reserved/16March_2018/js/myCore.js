@@ -85,13 +85,6 @@ $(document).ready(function(){
 	
 	
 	
-	// Onen cart Button Click (second)
-	$(".myCart").click(function(){
-		openNav();
-        openCalcSidePagewithCart();
-    });
-	//------------------------------
-	
 	
 	
 	// Click ++plus in Full Final Cart List from Left Panel************
@@ -239,7 +232,6 @@ $(document).ready(function(){
 			//var retrievedObject = JSON.parse(retrievedObject); // turn LC string item to object type again
 			//alert("Loc ST " + JSON.stringify(retrievedObject, null, 4));
 		}
-		$('#myModalConfirm').fadeIn(1200);
 		
 	}
 	// **                                                                                  **
@@ -273,8 +265,7 @@ $(document).ready(function(){
 		} else {
 		    $("#cartPrice").html(sumXX + " UAH");       // updating price in header cart icon
 			$("#totalSumCartFull").html(sumXX + " UAH");// updating price in left full page cart list
-			//alert("Screen width "+screen.width);
-			if (screen.width < 600) {  // if screen is mobile html the price to Home menu
+			if (screen.height < 600) {  // if screen is mobile html the price to Home menu
 			   $("#home").html(sumXX + " UAH");
 			}
 		}
@@ -317,9 +308,7 @@ $(document).ready(function(){
 	
 	
      
-	
 	// opens side page with full Cart list and calculates all from the data in OBJECT, generates auto id for +- (i.e id="product_plus")
-	// opening by itself is in index.html
 	// **************************************************************************************
     // **************************************************************************************
     //                                                                                     ** 
@@ -335,8 +324,8 @@ $(document).ready(function(){
 			            "<div class='row'>" +
 						"<div class='col-sm-4 col-xs-2'>" + key + "</div> " +
 						"<div class='col-sm-2 col-xs-2'>" + productsObject[key]['quantity'] + "</div> " +
-						"<div class='col-sm-1 col-xs-2'><button type='button' class='btn btn-success fullCartPlus' id=' "  + addID + "_plus'> + </button></div>" +
-						"<div class='col-sm-1 col-xs-2'><button class='btn btn-danger fullCartMinus'               id=' "  + addID + "_minus'> - </button>" + "</div>" +
+						"<div class='col-sm-1 col-xs-1'><button type='button' class='btn btn-success fullCartPlus' id=' "  + addID + "_plus'> + </button></div>" +
+						"<div class='col-sm-1 col-xs-1'><button class='btn btn-danger fullCartMinus'               id=' "  + addID + "_minus'> - </button>" + "</div>" +
 						"<div class='col-sm-2 col-xs-2'>" + productsObject[key]['price'] + "</div> " +
 						"<div class='col-sm-2 col-xs-2'>" + substringSum (productsObject[key]['quantity'] * productsObject[key]['price']) +
 						"</div>" +

@@ -1,8 +1,11 @@
 
 
-// 1.This script is for displaying a modal window with a single product, when u click it in list on main page
-// 2. This script displays Second small model box (show Confirm modal wheen u click "Add to Cart")
 
+
+
+	
+	
+	// This script is for displaying a modal window with a single product, when u click it in list on main page
 
 // Was not workinf unless use defer -> <script src="js/modalBox.js" defer>
 // Get the modal
@@ -21,7 +24,7 @@ var span = document.getElementsByClassName("close")[0];
 
 
 
-// Below handles clicking on product item in List View on main page. Uses pure JS!!.
+// Below handles clicking on product item in List View. Uses pure JS!!.
 // When the user clicks the button, open the modal 
 //it fistly uses id
 /*btn.onclick = function() {
@@ -68,8 +71,7 @@ for (var i=0; i < btn.length; i++) {
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-    //modal.style.display = "none";
-	$('#myModal').hide(1200);
+    modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -79,35 +81,3 @@ window.onclick = function(event) {
     }
 }
 
-
-
-
-
-
-
-
-//------------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------------
-// Second small model box (show Confirm modal wheen u click "Add to Cart")
-
-
-// Get the modal
-var modalConfirm = document.getElementById('myModalConfirm');
-
-// Get the <span> element that closes the modal
-var span2 = document.getElementsByClassName("closeConfirm")[0];
-
-// When the user clicks on <span> (x), close the modal
-span2.onclick = function() {
-    //modalConfirm.style.display = "none";
-	$('#myModalConfirm').hide(400);  //closes Confirmed model box
-	//$('#myModal').hide(1900);
-}
-
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modalConfirm) {
-        modalConfirm.style.display = "none";
-    }
-}

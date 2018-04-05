@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <script src="js/modalBox.js" defer></script> <!-- Modal Box-->
+  <link rel="stylesheet" href="css/sideNavFullScreenMenu.css"> <!--side nav full screen-->
+  <link rel="stylesheet" href="css/modalBox.css"> <!--modal window-->
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+  
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+	
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li>
+    </ul>
+	
+    <form class="navbar-form navbar-left" action="/action_page.php">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search" name="search">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+	
+	<ul class="nav navbar-nav"> <!-- Fullscreen menu in header -->
+      <li class="active">
+	    <a href="#">
+		  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+		</a>
+	  </li>
+      <!--<li><a href="#">0 UAH</a></li>-->
+    </ul><!-- End Fullscreen menu in header -->
+	
+	
+	<!--Mine BASKET -->
+	<ul class="nav navbar-nav" style="float: right;">
+      <li class="active"><a href="#">Cart</a></li>
+      <li><a href="#" id="cartPrice">0 UAH</a></li>
+      <!--<li><a href="#">Page 2</a></li>-->
+    </ul>
+	<!-- End mine Basket-->
+	
+	
+  </div>
+</nav>
+
+
+
+<!--  Start mine FULL Screen Menu -->
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+</br></br></br>
+<!--<h2>Animated Sidenav Example Full Width</h2>-->
+<!--<p>Click on the element below to open the navigation menu.</p>-->
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "100%";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+<!--end mine Full Screen Menu-->
+
+
+
+
+
+
+<!--Start Mine Modal Box uses src="js/modalBox.js-->
+<div>
+<h2>Animated Modal with Header and Footer</h2>
+
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Modal Header</h2>
+    </div>
+	
+    <div class="modal-body">
+	  
+	  <div class="row"> <!--Bstrap inj-->
+	  
+        <div class="col-sm-8"> 
+          <p>Stuff Name</p>
+          <p>Some other text...</p>  
+	    </div>
+		
+        <div class="col-sm-4">
+	      <p>Price</p>
+	    </div>
+	  </div> <!--class="row">-->
+	  
+    </div>
+    <div class="modal-footer">
+      <h3>Modal Footer</h3>
+    </div>
+  </div>
+
+</div>
+</div>
+<script>
+
+</script>
+<!-- End Mine Modal Box-->
+
+
+
+
+
+
+<div class="container">
+  <h3>Navbar Forms</h3>
+  <p>Use the .navbar-form class to vertically align form elements (same padding as links) inside the navbar.</p>
+  <p>The .input-group class is a container to enhance an input by adding an icon, text or a button in front or behind it as a "help text".</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group class is a container to enhance an input by adding an icon, text or a button in front or behind it as a "help text".</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group class is a container to enhance an input by adding an icon, text or a button in front or behind it as a "help text".</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group class is a container to enhance an input by adding an icon, text or a button in front or behind it as a "help text".</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group class is a container to enhance an input by adding an icon, text or a button in front or behind it as a "help text".</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+</div>
+
+</body>
+</html>
+

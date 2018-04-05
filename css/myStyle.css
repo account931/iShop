@@ -63,5 +63,14 @@
 }
 
 
+
 /*------------------ END Small Confirm modal box, when u click on "Add to Cart button" -------------------------*/
 
+
+
+/*  small icons on main page in product list */
+.prod-img {
+	width: 3%;
+	margin-left:0.1em;
+	margin-right:0.8em;
+}
