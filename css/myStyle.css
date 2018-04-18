@@ -70,7 +70,39 @@
 
 /*  small icons on main page in product list */
 .prod-img {
-	width: 3%;
+	width: 5%;
 	margin-left:0.1em;
 	margin-right:0.8em;
 }
+
+
+
+/*  Product image icons on main page in product list */
+.packaging {
+	width: 20%;
+    margin-top:0.8em;
+	//margin-left:45%; 
+}
+
+.textX {
+	margin-top:2em;
+}
+
+/*  ----------------Mobile */
+@media screen and (max-width: 460px) {  
+  .prod-img {
+	width: 5%;
+	margin-left:0.1em;
+	margin-right:0.2em;
+  } 
+  
+  .packaging {
+	width: 12%;
+    margin-top:0.2em;
+	//margin-left:45%; 
+  }
+  .textX {
+	margin-top:0.2em;
+  }
+}
+/*  ---------------- END Mobile */
